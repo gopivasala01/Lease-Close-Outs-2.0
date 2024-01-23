@@ -207,6 +207,10 @@ public class Arizona_Format1
 	    		  PDFReader.increasedRent_amount = increasedRentRaw.substring(increasedRentRaw.indexOf("shall be $")+"shall be $".length()).trim().split(" ")[0];
 	    		  System.out.println("Increased Rent - Amount = "+PDFReader.increasedRent_amount); 
 	    	}
+	    	else
+	    	{
+	    		TestDataExtraction.extractIncreasedRentDetails(text);
+	    	}
 	    }
 	    catch(Exception e)
 	    {
