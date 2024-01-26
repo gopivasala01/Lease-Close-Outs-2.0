@@ -378,11 +378,17 @@ public class PropertyWare_updateValues
 						if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
 						{
 							moveInCharges = "1,2,3,11";
+							if(PDFReader.incrementRentFlag == true)
+								autoCharges = "2,11,10";	
+							else
 							autoCharges = "2,11";	
 						}
 						else
 						{
 						moveInCharges = "1,2,3";
+						if(PDFReader.incrementRentFlag == true)
+							autoCharges = "2,7,10";
+						else
 						autoCharges = "2,7";
 						}
 					}
@@ -391,11 +397,17 @@ public class PropertyWare_updateValues
 						if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
 						{
 					     moveInCharges = "2,3,11";
+					     if(PDFReader.incrementRentFlag == true)
+					    	 autoCharges = "1,2,11,10";
+					     else
 					     autoCharges = "1,2,11";
 						}
 						else
 						{
 							moveInCharges = "2,3";
+							if(PDFReader.incrementRentFlag == true)
+								autoCharges = "1,2,7,10";
+							else
 						     autoCharges = "1,2,7";
 						}
 					}
@@ -411,12 +423,18 @@ public class PropertyWare_updateValues
 							if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
 							{
 								moveInCharges = "1,2,3,4,6,11";
+								if(PDFReader.incrementRentFlag == true)
+								autoCharges = "2,11,8,10";
+								else
 								autoCharges = "2,11,8";
 							}
 							else
 							{
 							moveInCharges = "1,2,3,4,6";
-							autoCharges = "2,7,8";
+							if(PDFReader.incrementRentFlag == true)
+							autoCharges = "2,7,8,10";
+							else 
+								autoCharges = "2,7,8";
 							}
 						}
 						else
@@ -424,12 +442,16 @@ public class PropertyWare_updateValues
 							if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
 							{
 								moveInCharges = "2,3,4,6,11";
-								autoCharges = "1,2,11,8";
+								if(PDFReader.incrementRentFlag == true)
+								autoCharges = "1,2,11,8,10";
+								else autoCharges = "1,2,11,8";
 							}
 							else
 							{
 						      moveInCharges = "2,3,4,6";
-						      autoCharges = "1,2,7,8";
+						      if(PDFReader.incrementRentFlag == true)
+						      autoCharges = "1,2,7,8,10";
+						      else autoCharges = "1,2,7,8";
 							}
 						}
 						//DataBase.assignChargeCodes(moveInCharges, autoCharges);
@@ -439,12 +461,16 @@ public class PropertyWare_updateValues
 						if(PDFReader.residentBenefitsPackageAvailabilityCheck==true)
 						{
 							moveInCharges = "2,3,4,5,11";
+							if(PDFReader.incrementRentFlag == true)
 							autoCharges = "1,2,11,8";
+							else autoCharges = "1,2,11,8";
 						}
 						else
 						{
 						moveInCharges = "2,3,4,5";
+						if(PDFReader.incrementRentFlag == true)
 						autoCharges = "1,2,7,8";
+						else autoCharges = "1,2,7,8";
 						}
 						//DataBase.assignChargeCodes(moveInCharges, autoCharges);
 					}
