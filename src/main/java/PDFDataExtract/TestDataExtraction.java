@@ -69,11 +69,11 @@ public class TestDataExtraction {
         }
 
         // Your logic for checking if monthlyRent and increasedMonthlyRent differ
-        if (!monthlyRent.equals(increasedMonthlyRent)) {
+        if (!monthlyRent.equals(increasedMonthlyRent)&&!increasedMonthlyRent.equals("")) {
             PDFReader.incrementRentFlag = true;
             PDFReader.increasedRent_amount = increasedMonthlyRent;
             
-        }
+        
 
         // Extracting dates
         String monthlyRentEndDate = "";
@@ -119,6 +119,7 @@ public class TestDataExtraction {
         // Assign the extracted values to your variables or use them as needed
         PDFReader.increasedRent_previousRentEndDate = monthlyRentEndDate;
         PDFReader.increasedRent_newStartDate = increasedRentStartDate;
+  }
     }
 
     // Function to extract date from text
