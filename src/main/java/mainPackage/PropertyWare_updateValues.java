@@ -8,8 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 public class PropertyWare_updateValues 
@@ -648,14 +650,18 @@ public class PropertyWare_updateValues
 		
 		public static void getRentCodeForArizona() throws Exception
 		{
-			RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+			try
+			{
+			RunnerClass.js.executeScript("window.scrollBy(document.body.scrollHeight,0)");
 			RunnerClass.driver.findElement(Locators.ledgerTab).click();
 			Thread.sleep(2000);
 			RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
 			RunnerClass.driver.findElement(Locators.newCharge).click();
 			Thread.sleep(2000);
 			//Account code
-			RunnerClass.driver.findElement(Locators.accountDropdown).click();
+			RunnerClass.wait.until(ExpectedConditions.elementToBeClickable(Locators.accountDropdown_moveInCharge));
+			((JavascriptExecutor)RunnerClass.driver).executeScript("arguments[0].click();", RunnerClass.driver.findElement(Locators.accountDropdown_moveInCharge));
+			//RunnerClass.driver.findElement(Locators.accountDropdown).click();
 			List<WebElement> chargeCodes = RunnerClass.driver.findElements(Locators.chargeCodesList);
 			for(int i=0;i<chargeCodes.size();i++)
 			{
@@ -668,8 +674,14 @@ public class PropertyWare_updateValues
 					
 				}
 			}
+			RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
 			RunnerClass.driver.findElement(Locators.moveInChargeCancel).click();
-			
+			}
+			catch(Exception e)
+			{
+				System.out.println("");
+				e.printStackTrace();
+			}
 		}
 		
 		 public static String replaceNumbers(String input, Map<String, String> replacements) 

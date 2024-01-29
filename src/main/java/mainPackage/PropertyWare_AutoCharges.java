@@ -2,6 +2,8 @@ package mainPackage;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -68,7 +70,7 @@ public class PropertyWare_AutoCharges
 						amount = amount.substring(0,amount.indexOf("."));
 					}
 					catch(Exception e)
-					{} */// Here add removed comment close
+					{}*/ // Here add removed comment close
 					if(chargeCode.contains(autoChargeCodes.replaceAll(".", ""))&&autoChargeAmount.replaceAll("[^0-9]", "").equals(amount.replaceAll("[^0-9]", ""))||amount.trim().equals("0.00"))//&&(startDate.equals(autoChargeStartDate)||autoChargeEndDate.trim().equals("")))
 					{
 						availabilityCheck = true;
@@ -111,11 +113,28 @@ public class PropertyWare_AutoCharges
 			try
 			{
 			RunnerClass.driver.findElement(Locators.newAutoCharge).click();
-			 
+			 try
+			 {
 		    //Charge Code
-			Select autoChargesDropdown = new Select(RunnerClass.driver.findElement(Locators.accountDropdown));
+			Select autoChargesDropdown = new Select(RunnerClass.driver.findElement(Locators.accountDropdown_AutoCharge));
 			autoChargesDropdown.selectByVisibleText(accountCode); //
-						
+			 }
+			 catch(org.openqa.selenium.NoSuchElementException e)
+			 {
+				if( PropertyWare_AutoCharges.selectCharCodeUsingList(accountCode)==false)
+				{
+					e.printStackTrace();
+					RunnerClass.statusID=1;
+					System.out.println("Issue in adding Move in Charge"+description);
+					RunnerClass.failedReason =  RunnerClass.failedReason+","+"Issue in adding Auto Charge - "+description;
+					RunnerClass.driver.findElement(Locators.autoCharge_CancelButton).click();
+					return false;	
+				}
+				 /*((JavascriptExecutor)RunnerClass.driver).executeScript("arguments[0].click();", RunnerClass.driver.findElement(Locators.accountDropdown));
+				 accountCode = accountCode.split("-")[0].trim();
+				 RunnerClass.driver.findElement(By.xpath("//*[@class='select2-search__field']")).sendKeys(accountCode);
+				 RunnerClass.driver.findElement(By.xpath("//*[@class='select2-results']/ul/li/ul/li")).click();*/
+			 }
 			//Start Date
 			RunnerClass.driver.findElement(Locators.autoCharge_StartDate).clear();
 			Thread.sleep(500);
@@ -162,6 +181,21 @@ public class PropertyWare_AutoCharges
 			}
 			return true;
 		}
-		
+		public static boolean selectCharCodeUsingList(String chargeCode)
+		{
+			RunnerClass.driver.findElement(By.xpath("//*[@id='editAutoChargeForm']/table[2]/tbody/tr[1]/td")).click();
+			List<WebElement> chargeCodesList = RunnerClass.driver.findElements(By.xpath("//*[@id='editAutoChargeForm']/table[2]/tbody/tr[1]/td/select/optgroup/option"));
+			for(int i=0;i<chargeCodesList.size();i++)
+			{
+				RunnerClass.actions.moveToElement(chargeCodesList.get(i)).build().perform();
+				String charge = chargeCodesList.get(i).getText();
+				if(charge.trim().equals(chargeCode.trim()))
+				{
+					chargeCodesList.get(i).click();
+					return true;
+				}
+			}
+			return false;
+		}
 
 }

@@ -72,7 +72,7 @@ public class PropertyWare_MoveInCharges
 						amount = amount+".00";
 					if(amount.endsWith(".0"))
 						amount = amount.replace(".0", "0.00");
-						*/
+						 //*/// Close this after
 					if(chargeCode.contains(autoChargeCodes)&&(autoChargeAmount.replaceAll("[^0-9]", "").contains(amount.replaceAll("[^0-9]", ""))))//||autoChargeAmount.split(".")[0].contains(amount.split(".")[0])))
 					{
 						availabilityCheck = true;
@@ -124,7 +124,7 @@ public class PropertyWare_MoveInCharges
 		RunnerClass.driver.findElement(Locators.newCharge).click();
 		Thread.sleep(2000);
 		//Account code
-		Select AutoChargesDropdown = new Select(RunnerClass.driver.findElement(Locators.accountDropdown));
+		Select AutoChargesDropdown = new Select(RunnerClass.driver.findElement(Locators.accountDropdown_moveInCharge));
 		try
 		{
 		AutoChargesDropdown.selectByVisibleText(accountCode);
