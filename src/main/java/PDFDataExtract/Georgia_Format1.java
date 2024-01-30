@@ -270,6 +270,11 @@ public class Georgia_Format1
 	    	String[] earlyTerminationRaw = earlyTerminationSectionText.substring(earlyTerminationSectionText.indexOf(PDFAppConfig.Georgia_Format1.AB_earlyTerminationFee_Prior)+PDFAppConfig.Georgia_Format1.AB_earlyTerminationFee_Prior.length()).split(" ");
 	    	
 		    PDFReader.earlyTermination = earlyTerminationRaw[0]+earlyTerminationRaw[1]; //text.substring(text.indexOf(PDFAppConfig.Georgia_Format1.AB_earlyTerminationFee_Prior)+PDFAppConfig.Georgia_Format1.AB_earlyTerminationFee_Prior.length(),text.indexOf(PDFAppConfig.Georgia_Format1.AB_earlyTerminationFee_After));
+		    if( !PDFReader.earlyTermination.contains("2"))
+		    {
+		    	PDFReader.earlyTermination = text.substring(text.indexOf("early termination fee to Landlord of")+"early termination fee to Landlord of".length()).trim();;
+		    	PDFReader.earlyTermination = PDFReader.earlyTermination.split(" ")[0]+PDFReader.earlyTermination.split(" ")[1];
+		    }
 	    }
 	    catch(Exception e)
 	    {
