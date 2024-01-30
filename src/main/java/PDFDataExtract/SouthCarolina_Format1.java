@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
@@ -359,7 +360,7 @@ public class SouthCarolina_Format1
 			    //AR_PropertyWare.proratedPetRent = proratedPetRentRaw.substring(proratedPetRentRaw.indexOf("Tenant will pay Landlord $")+"Tenant will pay Landlord $".length());//,proratedPetRentRaw.indexOf(AppConfig.AR_proratedPetRent_After));
 			    if(PDFReader.proratedPetRent.matches(".*[a-zA-Z]+.*"))
 			    {
-			    	PDFReader.proratedPetRent = text.substring(text.indexOf("Tenant will pay Landlord $ ",2)+"Tenant will pay Landlord $ ".length()).trim().split(" ")[0];
+			    	PDFReader.proratedPetRent = text.substring(StringUtils.ordinalIndexOf(text, "Tenant will pay Landlord $ ", 3)+"Tenant will pay Landlord $ ".length()).trim().split(" ")[0];
 			    }
 			    }
 			    catch(Exception e)
