@@ -72,7 +72,7 @@ public class PropertyWare_MoveInCharges
 						amount = amount+".00";
 					if(amount.endsWith(".0"))
 						amount = amount.replace(".0", "0.00");
-						 //*/// Close this after
+						*/ // Close this after
 					if(chargeCode.contains(autoChargeCodes)&&(autoChargeAmount.replaceAll("[^0-9]", "").contains(amount.replaceAll("[^0-9]", ""))))//||autoChargeAmount.split(".")[0].contains(amount.split(".")[0])))
 					{
 						availabilityCheck = true;
@@ -87,7 +87,13 @@ public class PropertyWare_MoveInCharges
 				//Add new Charge if it is not there
 				if(availabilityCheck==false)
 				{
-						PropertyWare_MoveInCharges.addingMoveInCharge(chargeCode, amount, startDate, endDate, description);
+						if(PropertyWare_MoveInCharges.addingMoveInCharge(chargeCode, amount, startDate, endDate, description)==false)
+						{
+							RunnerClass.driver.navigate().refresh();
+						      //Pop up after clicking Lease Name
+								PropertyWare.intermittentPopUp();
+								continue;
+						}
 				}
 				
 		        }
@@ -162,7 +168,10 @@ public class PropertyWare_MoveInCharges
 		{
 			if(RunnerClass.driver.findElement(Locators.somethingWrongInSavingCharge).isDisplayed())
 			{
-				RunnerClass.driver.findElement(Locators.moveInChargeCancel).click();
+				//RunnerClass.driver.findElement(Locators.moveInChargeCancel).click();
+				RunnerClass.driver.navigate().refresh();
+			      //Pop up after clicking Lease Name
+			    PropertyWare.intermittentPopUp();
 			}
 			
 		}
