@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
@@ -34,29 +35,39 @@ public class TestDataExtraction {
         try {
             rentSection = text.substring(text.indexOf("Rent:"));
 
-            if (!rentSection.contains("for a total of $")) {
+            if (!rentSection.contains("for a total of $")) 
+            {
+            	monthlyRent = rentSection.substring(StringUtils.ordinalIndexOf(rentSection, "Monthly Rent due in the amount of", 1)+"Monthly Rent due in the amount of".length()).trim().split(" ")[0];
+                //monthlyRent = monthlyRentMatcher.group(1);
+                System.out.println("Monthly Rent: " + monthlyRent);
+                increasedMonthlyRent = rentSection.substring(StringUtils.ordinalIndexOf(rentSection, "Monthly Rent due in the amount of", 2)+"Monthly Rent due in the amount of".length()).trim().split(" ")[0];
+                //increasedMonthlyRent = monthlyRentMatcher.group(1);
+                System.out.println("Increased Monthly Rent: " + increasedMonthlyRent);
+                /*
                 // Use the pattern for this case
-                Pattern monthlyRentPattern = Pattern.compile("Month .*? Monthly Rent due in the amount of \\$(\\d+\\.\\d+)");
-                Matcher monthlyRentMatcher = monthlyRentPattern.matcher(rentSection);
+                //Pattern monthlyRentPattern = Pattern.compile("Monthly Rent due in the amount of \\$(\\d+\\.\\d+)");
+               // Matcher monthlyRentMatcher = monthlyRentPattern.matcher(rentSection);
 
                 // Find the first occurrence for monthlyRent
-                if (monthlyRentMatcher.find()) {
-                    monthlyRent = monthlyRentMatcher.group(1);
+                //if (monthlyRentMatcher.find()) {
+            	monthlyRent = rentSection.substring(StringUtils.ordinalIndexOf(text, "Monthly Rent due in the amount of", 1)+"Monthly Rent due in the amount of".length()).trim().split(" ")[0];
+                    //monthlyRent = monthlyRentMatcher.group(1);
                     System.out.println("Monthly Rent: " + monthlyRent);
 
                     // Try to find the second occurrence for increasedMonthlyRent
-                    if (monthlyRentMatcher.find()) {
-                        increasedMonthlyRent = monthlyRentMatcher.group(1);
+                    //if (monthlyRentMatcher.find()) {
+                    increasedMonthlyRent = rentSection.substring(StringUtils.ordinalIndexOf(text, "Monthly Rent due in the amount of", 2)+"Monthly Rent due in the amount of".length()).trim().split(" ")[0];
+                        //increasedMonthlyRent = monthlyRentMatcher.group(1);
                         System.out.println("Increased Monthly Rent: " + increasedMonthlyRent);
                     } else {
                         System.out.println("Increased Monthly Rent: Not Found");
                     }
-                }
+                }*/
             } else {
                 // Use the existing logic
                 int startIndex = rentSection.indexOf("for a total of $") + "for a total of $".length();
                 int endIndex = rentSection.indexOf("for a total of $", startIndex);
-
+                System.out.println(" ");
                 monthlyRent = rentSection.substring(startIndex, endIndex).split(" ")[0].trim();
                 System.out.println("Monthly Rent: " + monthlyRent);
 
