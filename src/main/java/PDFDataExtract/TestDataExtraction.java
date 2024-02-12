@@ -43,6 +43,10 @@ public class TestDataExtraction {
                 increasedMonthlyRent = rentSection.substring(StringUtils.ordinalIndexOf(rentSection, "Monthly Rent due in the amount of", 2)+"Monthly Rent due in the amount of".length()).trim().split(" ")[0];
                 //increasedMonthlyRent = monthlyRentMatcher.group(1);
                 System.out.println("Increased Monthly Rent: " + increasedMonthlyRent);
+                if(increasedMonthlyRent.matches(".*[a-zA-Z]+.*")==true||increasedMonthlyRent.trim().equals("$"))
+                {
+                	increasedMonthlyRent = "Error";
+                }
                 /*
                 // Use the pattern for this case
                 //Pattern monthlyRentPattern = Pattern.compile("Monthly Rent due in the amount of \\$(\\d+\\.\\d+)");
@@ -80,7 +84,7 @@ public class TestDataExtraction {
         }
 
         // Your logic for checking if monthlyRent and increasedMonthlyRent differ
-        if (!monthlyRent.equals(increasedMonthlyRent)&&!increasedMonthlyRent.equals("")) {
+        if (!monthlyRent.equals(increasedMonthlyRent)&&!increasedMonthlyRent.equals("")&&!increasedMonthlyRent.equals("Error")) {
             PDFReader.incrementRentFlag = true;
             PDFReader.increasedRent_amount = increasedMonthlyRent;
             

@@ -36,6 +36,10 @@ public class PropertyWare_AutoCharges
 				String endDate = RunnerClass.autoCharges[i][3];
 				String description = RunnerClass.autoCharges[i][4];
 				
+			// for a temporary patch until issue gets figured out of adding a Increased rent charge code with "$"
+				if(chargeCode.equals("40010 - Rent Income")&&amount.equals("$"))
+					continue;
+				
 				//If amount is Captive Insurance, Need to add decimal values to the amount as it is not coming along with it
 				if(!amount.contains("."))
 					amount = amount+".00";
