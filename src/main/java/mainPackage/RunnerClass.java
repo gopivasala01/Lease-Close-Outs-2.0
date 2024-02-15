@@ -97,7 +97,7 @@ public class RunnerClass
 		public static String maximumAmount_GreaterOf ="";
 		public static String maximumDropdown2_GreaterOf ="";
 		public static String minimumDue_GreaterOf ="";
-	
+		public static int pdfErrorRerunCount =0;
 	public static void main(String[] args) throws Exception 
 	{
 		
@@ -121,8 +121,12 @@ public class RunnerClass
 		  arizonaCityFromBuildingAddress = "";
 		  arizonaRentCode = "";
 		  arizonaCodeAvailable = false;
+		  pdfErrorRerunCount =0;
 		  
+		  //If the Wrong PDF Format error comes, run the process again for the same lease
 		  
+		  //while(pdfErrorRerunCount <=1)
+		  //{
 		  //Delete files in the folder before starting a lease
 		  try
 			{
@@ -185,13 +189,23 @@ public class RunnerClass
 						else 
 							updateSuccessStatus = "Update [Automation].LeaseInfo Set Status ='Review', StatusID=5,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
 					    	DataBase.updateTable(updateSuccessStatus);
+					    	break;
 					}
 					else 
 					{
+						
+						//if(pdfErrorRerunCount==1)
+						//{
 						if(failedReason.charAt(0)==',')
 						failedReason = failedReason.substring(1);
 						String updateSuccessStatus = "Update [Automation].LeaseInfo Set Status ='Failed', StatusID=3,NotAutomatedFields='"+failedReason+"',LeaseCompletionDate= getDate() where BuildingName like '%"+buildingAbbreviation+"%'";
 				    	DataBase.updateTable(updateSuccessStatus);
+						//}
+						//else 
+						//{
+						//	pdfErrorRerunCount =1; 
+						//	continue;
+						//}
 					}
 					
 				}
@@ -243,6 +257,7 @@ public class RunnerClass
 			  e.printStackTrace();
 		  }
 		}
+		  //}
 		}
 	}   
 

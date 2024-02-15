@@ -99,6 +99,16 @@ public class Indiana_Format1
 	    }*/
 	    try
 	    {
+	    	try
+	    	{
+	    		 String rentSection = text.substring(text.indexOf("Rent:"));
+	    		 PDFReader.monthlyRent = rentSection.substring(StringUtils.ordinalIndexOf(rentSection, "Monthly Rent due in the amount of $", 1)+"Monthly Rent due in the amount of $".length()).trim().split(" ")[0];
+	    	}
+	    	catch(Exception e)
+	    	{
+	    		PDFReader.monthlyRent = "Error";
+	    	}
+	    	if(PDFReader.monthlyRent.equals("Error")||PDFReader.monthlyRent.matches(".*[a-zA-Z]+.*"))
 		    PDFReader.monthlyRent = text.substring(text.indexOf(PDFAppConfig.Indiana_Format1.AB_fullRent_Prior)+PDFAppConfig.Indiana_Format1.AB_fullRent_Prior.length()).trim().split(" ")[0].trim();//,text.indexOf(PDFAppConfig.Indiana_Format1.AB_fullRent_After)).substring(1).replaceAll("[^.0-9]", "");;
 		    if(RunnerClass.onlyDigits(PDFReader.monthlyRent.replace(".", "").replace(",", ""))==false)
 		    {

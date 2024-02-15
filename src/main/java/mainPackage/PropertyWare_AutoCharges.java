@@ -51,7 +51,7 @@ public class PropertyWare_AutoCharges
 					RunnerClass.statusID=1;
 					continue;
 				}
-				
+				/*
 				try
 				{
 				List<WebElement> existingAutoCharges = RunnerClass.driver.findElements(Locators.autoCharge_List);
@@ -74,7 +74,7 @@ public class PropertyWare_AutoCharges
 						amount = amount.substring(0,amount.indexOf("."));
 					}
 					catch(Exception e)
-					{}*/ // Here add removed comment close
+					{} // Here add removed comment close
 					if(chargeCode.contains(autoChargeCodes.replaceAll(".", ""))&&autoChargeAmount.replaceAll("[^0-9]", "").equals(amount.replaceAll("[^0-9]", ""))||amount.trim().equals("0.00"))//&&(startDate.equals(autoChargeStartDate)||autoChargeEndDate.trim().equals("")))
 					{
 						availabilityCheck = true;
@@ -85,7 +85,7 @@ public class PropertyWare_AutoCharges
 				}
 				catch(Exception e)
 				{}
-	      
+	      */
 				if(availabilityCheck==false)
 				{
 					PropertyWare_AutoCharges.addingAnAutoCharge(chargeCode, amount, startDate,endDate, description);
