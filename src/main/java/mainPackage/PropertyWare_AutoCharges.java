@@ -1,12 +1,15 @@
 package mainPackage;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PropertyWare_AutoCharges 
 {
@@ -51,7 +54,7 @@ public class PropertyWare_AutoCharges
 					RunnerClass.statusID=1;
 					continue;
 				}
-				/*
+				
 				try
 				{
 				List<WebElement> existingAutoCharges = RunnerClass.driver.findElements(Locators.autoCharge_List);
@@ -74,7 +77,7 @@ public class PropertyWare_AutoCharges
 						amount = amount.substring(0,amount.indexOf("."));
 					}
 					catch(Exception e)
-					{} // Here add removed comment close
+					{} */// Here add removed comment close
 					if(chargeCode.contains(autoChargeCodes.replaceAll(".", ""))&&autoChargeAmount.replaceAll("[^0-9]", "").equals(amount.replaceAll("[^0-9]", ""))||amount.trim().equals("0.00"))//&&(startDate.equals(autoChargeStartDate)||autoChargeEndDate.trim().equals("")))
 					{
 						availabilityCheck = true;
@@ -85,7 +88,7 @@ public class PropertyWare_AutoCharges
 				}
 				catch(Exception e)
 				{}
-	      */
+	      
 				if(availabilityCheck==false)
 				{
 					PropertyWare_AutoCharges.addingAnAutoCharge(chargeCode, amount, startDate,endDate, description);
@@ -93,7 +96,19 @@ public class PropertyWare_AutoCharges
 				
 			}
 			 if(AppConfig.saveButtonOnAndOff==true)
-					RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).click(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
+			 {	
+				 RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).click(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
+			     try
+			     {
+			    	 RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(120));
+			    	 RunnerClass.wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(Locators.newLeaseButton));
+			     }
+			     catch(Exception e)
+			     {
+			    	 RunnerClass.failedReason = RunnerClass.failedReason+","+"PW is not responding while saving auto charges";
+			    	 return false;
+			     }
+			 }      
 				  else
 					RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).click(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
 	  Thread.sleep(2000);

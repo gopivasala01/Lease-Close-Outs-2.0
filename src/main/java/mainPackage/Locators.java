@@ -109,6 +109,7 @@ public class Locators
     public static By maximumDropdown2 = By.name("entity.lateFee.limitTypeMethod");
     public static By maximumDatField = By.name("entity.lateFee.maxAmountAsString");
     public static By saveLease = By.xpath("(//*[@class='primaryButtons'])[2]/input[1]");
+    public static By newLeaseButton = By.xpath("//*[@value='New Lease']");
     public static By initialMonthlyRent = By.xpath("//*[text()='Initial Monthly Rent']/following::input[1]");
     public static By initialPetRentAmount = By.xpath("//*[text()='Initial Pet Rent Amount']/following::input[1]");
     public static By petRentAmount = By.xpath("//*[text()='Pet Rent Amount']/following::input[1]");
