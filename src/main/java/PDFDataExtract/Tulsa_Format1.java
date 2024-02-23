@@ -31,17 +31,19 @@ public class Tulsa_Format1
 	    System.out.println("------------------------------------------------------------------");
 	    try
 	    {
-	    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Tulsa_Format1.AB_commencementDate_Prior)+PDFAppConfig.Tulsa_Format1.AB_commencementDate_Prior.length());
-	    	PDFReader.commencementDate = PDFReader.commencementDate.substring(0, PDFReader.commencementDate.indexOf(PDFAppConfig.Tulsa_Format1.AB_commencementDate_After)).trim();
-	    	PDFReader.commencementDate = PDFReader.commencementDate.trim().replaceAll(" +", " ");
+	    	PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Tulsa_Format1.AB_commencementDate_Prior2)+PDFAppConfig.Tulsa_Format1.AB_commencementDate_Prior2.length());
+    		PDFReader.commencementDate = PDFReader.commencementDate.substring(0, PDFReader.commencementDate.indexOf(" (")).trim();
+    		PDFReader.commencementDate = PDFReader.commencementDate.trim().replaceAll(" +", " ");
+	    	
+	    	
 	    }
 	    catch(Exception e)
 	    {
 	    	try
 	    	{
-	    		PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Tulsa_Format1.AB_commencementDate_Prior2)+PDFAppConfig.Tulsa_Format1.AB_commencementDate_Prior2.length());
-	    		PDFReader.commencementDate = PDFReader.commencementDate.substring(0, PDFReader.commencementDate.indexOf(" (")).trim();
-	    		PDFReader.commencementDate = PDFReader.commencementDate.trim().replaceAll(" +", " ");
+	    		PDFReader.commencementDate = text.substring(text.indexOf(PDFAppConfig.Tulsa_Format1.AB_commencementDate_Prior)+PDFAppConfig.Tulsa_Format1.AB_commencementDate_Prior.length());
+		    	PDFReader.commencementDate = PDFReader.commencementDate.substring(0, PDFReader.commencementDate.indexOf(PDFAppConfig.Tulsa_Format1.AB_commencementDate_After)).trim();
+		    	PDFReader.commencementDate = PDFReader.commencementDate.trim().replaceAll(" +", " ");
 	    	}
 	    	catch(Exception e2)
 	    	{

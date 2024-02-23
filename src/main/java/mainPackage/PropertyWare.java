@@ -635,7 +635,7 @@ public class PropertyWare
 	
 	public static void intermittentPopUp() throws Exception
 	{
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		//Pop up after clicking lease name
 				try
 				{
