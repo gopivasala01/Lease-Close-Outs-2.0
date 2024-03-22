@@ -229,6 +229,18 @@ public class Alabama_Format2
 		    }
 		    System.out.println("HVAC Air Filter Fee = "+PDFReader.airFilterFee);//.substring(commensementDate.lastIndexOf(":")+1));
 	    }
+	  //RBP Opt - Out Addendum Check
+	    try
+	    {
+	    	 if(text.contains("Resident Benefits Package Opt-Out Addendum"))
+	 	    {
+	 	    	PDFReader.RBPOptOutAddendumCheck= true;
+	 	    }
+	    }
+	    catch(Exception e)
+	    {
+	    	
+	    }
 	    try
 	    {
 	    	PDFReader.occupants = text.substring(text.indexOf(PDFAppConfig.Alabama_Format2.occupants_Prior)+PDFAppConfig.Alabama_Format2.occupants_Prior.length(),text.indexOf(PDFAppConfig.Alabama_Format2.occupants_After)).trim();

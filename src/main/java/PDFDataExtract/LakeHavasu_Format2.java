@@ -235,6 +235,18 @@ public class LakeHavasu_Format2
 		}
 	    }
 	    catch(Exception e) {}
+	  //RBP Opt - Out Addendum Check
+	    try
+	    {
+	    	 if(text.contains("Resident Benefits Package Opt-Out Addendum"))
+	 	    {
+	 	    	PDFReader.RBPOptOutAddendumCheck= true;
+	 	    }
+	    }
+	    catch(Exception e)
+	    {
+	    	
+	    }
 	    //Early Termination
 		try
 	    {

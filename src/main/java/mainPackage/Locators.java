@@ -65,6 +65,8 @@ public class Locators
     public static By autoCharge_CancelButton = By.xpath("//*[@id='editAutoChargeForm']/descendant::div[4]/input[2]");
     public static By autoCharge_SaveButton = By.xpath("(//*[@class='primaryButtons'])[3]/input[1]");
     public static By autoCharge_refField = By.name("charge.refNo");
+    public static By RBPOptOut = By.xpath("//*[text()='RBP opt out']/following::Select[1]");
+    public static By enrolledInRBPForPMUse = By.xpath("//*[contains(text(),'Enrolled in RBP')]/following::Select[1]");
     public static By earlyTermFee2x = By.xpath("//*[text()='Early Term Fee 2x Rent?']/following::select[1]");
     public static By clientType = By.xpath("//*[text()='Client Type']//following::select[1]");
     public static By earlyTermFee2x_textbox1 = By.xpath("//*[text()='Early Term Fee 2x Rent?']/following::input[1]");

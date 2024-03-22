@@ -250,7 +250,20 @@ public class Indiana_Format1
 		    }
 		    System.out.println("Air Filter Fee = "+PDFReader.airFilterFee.trim());
 	    }
+	  //RBP Opt - Out Addendum Check
 	    try
+	    {
+	    	 if(text.contains("Resident Benefits Package Opt-Out Addendum"))
+	 	    {
+	 	    	PDFReader.RBPOptOutAddendumCheck= true;
+	 	    }
+	    }
+	    catch(Exception e)
+	    {
+	    	
+	    }
+	    try
+	    
 	    {
 	    	String earlyTerminationSectionText = text.substring(text.indexOf("Early Termination:"));
 	    	String[] earlyTerminationRaw = earlyTerminationSectionText.substring(earlyTerminationSectionText.indexOf(PDFAppConfig.Indiana_Format1.AB_earlyTerminationFee_Prior)+PDFAppConfig.Indiana_Format1.AB_earlyTerminationFee_Prior.length()).split(" ");

@@ -258,6 +258,18 @@ public class Florida_Format1
 		    }
 		    System.out.println("Air Filter Fee = "+PDFReader.airFilterFee.trim());
 	    }
+	  //RBP Opt - Out Addendum Check
+	    try
+	    {
+	    	 if(text.contains("Resident Benefits Package Opt-Out Addendum"))
+	 	    {
+	 	    	PDFReader.RBPOptOutAddendumCheck= true;
+	 	    }
+	    }
+	    catch(Exception e)
+	    {
+	    	
+	    }
 	    //Early Termination
 	    
 	    if(text.contains(PDFAppConfig.Florida_Format1.earlyTerminationAddendumAvailabilityCheck))

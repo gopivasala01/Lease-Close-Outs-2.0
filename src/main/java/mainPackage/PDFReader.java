@@ -104,6 +104,7 @@ public class PDFReader
 	public static boolean captiveInsurenceATXFlag = false;
 	public static String captiveInsurenceATXFee = "";
 	public static boolean floridaLiquidizedAddendumOption1Check =  false;
+	public static boolean RBPOptOutAddendumCheck = false;
 	
 		public static boolean readPDFPerMarket(String market) throws Exception  
 		{

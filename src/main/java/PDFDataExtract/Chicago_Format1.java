@@ -234,6 +234,18 @@ public class Chicago_Format1
 	    	}
 	    }
 	    catch(Exception e) {}
+	  //RBP Opt - Out Addendum Check
+	    try
+	    {
+	    	 if(text.contains("Resident Benefits Package Opt-Out Addendum"))
+	 	    {
+	 	    	PDFReader.RBPOptOutAddendumCheck= true;
+	 	    }
+	    }
+	    catch(Exception e)
+	    {
+	    	
+	    }
 	    try
 	    {
 	    	String earlyTerminationSectionText = text.substring(text.indexOf("Early Termination:"));

@@ -285,6 +285,86 @@ public class PropertyWare_OtherInformation
 		}
 		}
 		}
+		//RBP opt out
+		try
+		{
+			if(PDFReader.RBPOptOutAddendumCheck==true)
+			{
+				//Enrolled in RBP For PM Use
+				try
+				{
+				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.enrolledInRBPForPMUse)).build().perform();
+				RunnerClass.driver.findElement(Locators.enrolledInRBPForPMUse).click();
+				Select RBPOptOut = new Select(RunnerClass.driver.findElement(Locators.enrolledInRBPForPMUse));
+				try
+				{
+				RBPOptOut.selectByVisibleText("No");
+				}
+				catch(Exception e2)
+				{
+					try
+					{
+						RBPOptOut.selectByVisibleText("NO");
+					}
+					catch(Exception e3)
+					{
+						RunnerClass.failedReason = RunnerClass.failedReason+",Enrolled in RBP For PM Use";
+						//DataBase.notAutomatedFields(RunnerClass.buildingAbbreviation, "Enrolled in FilterEasy"+'\n');
+						//temp=1;
+						e3.printStackTrace();
+					}
+				}
+				}
+				catch(Exception O) {
+					RunnerClass.failedReason = RunnerClass.failedReason+",Enrolled in RBP For PM Use";
+					//DataBase.notAutomatedFields(RunnerClass.buildingAbbreviation, "Enrolled in FilterEasy"+'\n');
+					//temp=1;
+					O.printStackTrace();
+				}
+				
+				
+				//RBP Opt Out Options
+				
+				try
+				{
+				RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.RBPOptOut)).build().perform();
+				RunnerClass.driver.findElement(Locators.RBPOptOut).click();
+				Select RBPOptOut = new Select(RunnerClass.driver.findElement(Locators.RBPOptOut));
+				try
+				{
+				RBPOptOut.selectByVisibleText("Yes");
+				}
+				catch(Exception e2)
+				{
+					try
+					{
+						RBPOptOut.selectByVisibleText("YES");
+					}
+					catch(Exception e3)
+					{
+						RunnerClass.failedReason = RunnerClass.failedReason+",RBP Opt Out Options";
+						//DataBase.notAutomatedFields(RunnerClass.buildingAbbreviation, "Enrolled in FilterEasy"+'\n');
+						//temp=1;
+						e3.printStackTrace();
+					}
+				}
+				}
+				catch(Exception O) {
+					RunnerClass.failedReason = RunnerClass.failedReason+",RBP Opt Out Options";
+					//DataBase.notAutomatedFields(RunnerClass.buildingAbbreviation, "Enrolled in FilterEasy"+'\n');
+					//temp=1;
+					O.printStackTrace();
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			RunnerClass.failedReason = RunnerClass.failedReason+",RBP Opt Out";
+			//DataBase.notAutomatedFields(RunnerClass.buildingAbbreviation, "Enrolled in FilterEasy"+'\n');
+			//temp=1;
+			e.printStackTrace();
+		}
+		
 		//Client Type
 		try
 		{

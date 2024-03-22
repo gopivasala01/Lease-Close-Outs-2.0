@@ -240,6 +240,18 @@ public class LittleRock_Format1
 		    }
 		    System.out.println("Air Filter Fee = "+PDFReader.airFilterFee.trim());
 	    }
+	  //RBP Opt - Out Addendum Check
+	    try
+	    {
+	    	 if(text.contains("Resident Benefits Package Opt-Out Addendum"))
+	 	    {
+	 	    	PDFReader.RBPOptOutAddendumCheck= true;
+	 	    }
+	    }
+	    catch(Exception e)
+	    {
+	    	
+	    }
 	    try
 	    {
 	    	String earlyTerminationSectionText = text.substring(text.indexOf("Early Termination:"));
