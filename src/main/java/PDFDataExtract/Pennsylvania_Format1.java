@@ -144,6 +144,19 @@ public class Pennsylvania_Format1
 	    	 PDFReader.monthlyRent = "Error";
 	    	 e.printStackTrace();
 	    }
+	    if(RunnerClass.containsInvalidCharacters(PDFReader.monthlyRent)==true)
+	    {
+	    	try
+	    	{
+	    	PDFReader.monthlyRent = text.substring(text.indexOf("RENT:"));
+	    	PDFReader.monthlyRent = PDFReader.monthlyRent.substring(PDFReader.monthlyRent.indexOf("Monthly Rent due in the amount of $")+"Monthly Rent due in the amount of $".length()).trim().split(" ")[0].trim();
+	    	}
+	    	catch(Exception e)
+	    	{
+	    		PDFReader.monthlyRent = "Error";
+	    		e.printStackTrace();
+	    	}
+	    }
 	    System.out.println("Monthly Rent "+PDFReader.monthlyRent.trim());
 	    
 	  //Increased Rent Check

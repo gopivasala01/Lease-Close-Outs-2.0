@@ -101,7 +101,6 @@ public class RunnerClass
 	public static void main(String[] args) throws Exception 
 	{
 		
-		
 		//Get In Progress Leases
 		//Company,BuildingAbbreviation, LeaseNae
 		DataBase.getBuildingsList();
@@ -534,4 +533,13 @@ public class RunnerClass
 	            return matcher.find();
 	        }
 
+	        public static boolean containsInvalidCharacters(String input) {
+	            // Regular expression to match any character other than numbers, dot, $, and comma
+	            String regex = "[^0-9.,$]";
+	            Pattern pattern = Pattern.compile(regex);
+	            Matcher matcher = pattern.matcher(input);
+	            if( matcher.find()==true)
+	            	return true;
+	            else return false;
+	        }
 }
