@@ -105,6 +105,7 @@ public class PDFReader
 	public static String captiveInsurenceATXFee = "";
 	public static boolean floridaLiquidizedAddendumOption1Check =  false;
 	public static boolean RBPOptOutAddendumCheck = false;
+	public static String prorateResidentBenefitPackage = "";
 	
 		public static boolean readPDFPerMarket(String market) throws Exception  
 		{
@@ -172,6 +173,7 @@ public class PDFReader
 			captiveInsurenceATXFlag = false;
 			floridaLiquidizedAddendumOption1Check =  false;
 			HVACFilterOptOutAddendum = false;
+			prorateResidentBenefitPackage = "";
 			
 		    //Runner Class Late Fee Variables
 		 // All fields required for Late Fee Rule
@@ -1321,6 +1323,31 @@ public class PDFReader
 				
 			}
 			
+			//Calculating Prorate Resident Benefit Package if RBP amount is 49.95
+			try
+			{ 
+				String startDate = RunnerClass.convertDate(PDFReader.commencementDate);
+				int dayInMoveInDate = Integer.parseInt(startDate.split("/")[1]);
+				int daysInMonth = RunnerClass.getDaysInMonth(startDate);
+				double RBPAmount = Double.parseDouble(PDFReader.residentBenefitsPackage);
+				double RBPPerDay = RBPAmount /daysInMonth;
+				int differenceInDays = (daysInMonth - dayInMoveInDate)+1;
+				if(daysInMonth==differenceInDays||(startDate.split("/")[1].equals("01")||startDate.split("/")[1].equals("1")))
+				{
+					PDFReader.prorateResidentBenefitPackage =PDFReader.residentBenefitsPackage;
+				}
+				else
+				{
+				double prorateRBP = differenceInDays*RBPPerDay; 
+				PDFReader.prorateResidentBenefitPackage = String.format("%.2f", prorateRBP);
+				}
+			}
+			catch(Exception e)
+			{
+				PDFReader.prorateResidentBenefitPackage = "Error";
+				e.printStackTrace();
+			}
+			System.out.println("Prorate RBP = "+PDFReader.prorateResidentBenefitPackage);
 			return true;
 			
 		}

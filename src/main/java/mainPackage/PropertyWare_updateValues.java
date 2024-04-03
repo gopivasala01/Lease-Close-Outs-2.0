@@ -129,7 +129,7 @@ public class PropertyWare_updateValues
 			try
 			{
 			String query =null;
-			for(int i=1;i<=27;i++)
+			for(int i=1;i<=28;i++)
 			{
 				switch(i)
 				{
@@ -247,6 +247,9 @@ public class PropertyWare_updateValues
 					break;
 				case 27: 
 					query = query+"\n Update automation.LeaseCloseOutsChargeChargesConfiguration Set ChargeCode = '"+AppConfig.getResidentBenefitsPackageTaxChargeCode(RunnerClass.company)+"',Amount = '"+PDFReader.residentBenefitsPackageTaxAmount+"',StartDate='"+startDate_MoveInCharge+"',EndDate='',AutoCharge_StartDate='"+startDate_AutoCharge+"' where ID=27";
+					break;
+				case 28: 
+					query = query+"\n Update automation.LeaseCloseOutsChargeChargesConfiguration Set ChargeCode = '"+AppConfig.getResidentBenefitsPackageChargeCode(RunnerClass.company)+"',Amount = '"+PDFReader.prorateResidentBenefitPackage+"',StartDate='"+startDate_MoveInCharge+"',EndDate='',AutoCharge_StartDate='"+startDate_AutoCharge+"' where ID=28";
 					break;
 				}
 			}
@@ -618,6 +621,16 @@ public class PropertyWare_updateValues
 		        //Auto Charges
 		        String replacedString2 = replaceNumbers(autoCharges, replacements);
 		        autoCharges = replacedString2;
+			}
+			
+			// If RBP amount is 49.95, then we need to Add Prorate RBP amount in Move in charges
+			if((PDFReader.residentBenefitsPackage.trim().contains("49.95")||(RunnerClass.portfolioName.contains("ATX.")&&PDFReader.residentBenefitsPackage.trim().contains("39.00")))&&PDFReader.residentBenefitsPackageAvailabilityCheck==true)
+			{
+				Map<String, String> replacements = new HashMap<>();
+		        replacements.put("11", "28");
+		        //Move In Charges
+		        String replacedString = replaceNumbers(moveInCharges, replacements);
+		        moveInCharges = replacedString;
 			}
 			
 			DataBase.assignChargeCodes(moveInCharges, autoCharges);

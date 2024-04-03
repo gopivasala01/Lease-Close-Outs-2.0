@@ -203,6 +203,8 @@ public class California_Format1
 	    	 try
 	 	    {
 	 		    PDFReader.residentBenefitsPackage = text.substring(text.indexOf(PDFAppConfig.California_Format1.AB1_residentBenefitsPackage_Prior)+PDFAppConfig.California_Format1.AB1_residentBenefitsPackage_Prior.length()).split(" ")[0].replaceAll("[^0-9a-zA-Z.]", "");
+	 		   if(PDFReader.residentBenefitsPackage.contains("month"))
+	 				  PDFReader.residentBenefitsPackage = PDFReader.residentBenefitsPackage.replace("month", "").trim();
 	 		    if(PDFReader.residentBenefitsPackage.matches(".*[a-zA-Z]+.*"))
 	 		    {
 	 		    	PDFReader.residentBenefitsPackage = "Error";

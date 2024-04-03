@@ -100,7 +100,8 @@ public class RunnerClass
 		public static int pdfErrorRerunCount =0;
 	public static void main(String[] args) throws Exception 
 	{
-		
+		double d = 18.316;
+		d  = Double.parseDouble(String.format("%.2f", d));
 		//Get In Progress Leases
 		//Company,BuildingAbbreviation, LeaseNae
 		DataBase.getBuildingsList();
@@ -541,5 +542,23 @@ public class RunnerClass
 	            if( matcher.find()==true)
 	            	return true;
 	            else return false;
+	        }
+	        public static int getDaysInMonth(String dateStr) {
+	            // Split the date string into month, day, and year
+	            String[] parts = dateStr.split("/");
+	            int month = Integer.parseInt(parts[0]);
+	            int year = Integer.parseInt(parts[2]);
+
+	            // Create a Calendar instance
+	            Calendar calendar = Calendar.getInstance();
+
+	            // Set the year and month in the calendar
+	            calendar.set(Calendar.YEAR, year);
+	            calendar.set(Calendar.MONTH, month - 1); // Calendar months are zero-based
+
+	            // Get the maximum value for the day of the month
+	            int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+	            return daysInMonth;
 	        }
 }
