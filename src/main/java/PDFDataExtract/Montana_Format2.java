@@ -546,7 +546,11 @@ public class Montana_Format2
 	    catch(Exception e)
 	    {}
 	    
+	    if(!PDFReader.residentBenefitsPackage.trim().replace("$", "").equals("49.95"))
+	    {
 	    //New Resident Benefits Package and Tax Amounts
+	    	if(!PDFReader.residentBenefitsPackage.trim().replace("$", "").equals("39.00"))
+	    	{
 	    try
 	    {
 	    	//Resident Benefits Package 
@@ -589,7 +593,8 @@ public class Montana_Format2
 	    }
 	    catch(Exception e)
 	    {}
-	    
+	    	}
+	    }
 	    //document.close();
 		return true;
 	}

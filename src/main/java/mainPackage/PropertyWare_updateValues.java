@@ -608,7 +608,7 @@ public class PropertyWare_updateValues
 				moveInCharges = moveInCharges+",26";
 				autoCharges = autoCharges+",26";
 			}
-			
+			/*
 			//If RBP Has tax amount, add RBP in two charges
 			if(PDFReader.residentBenefitsPackageTaxAvailabilityCheck==true) 
 			{
@@ -622,7 +622,7 @@ public class PropertyWare_updateValues
 		        String replacedString2 = replaceNumbers(autoCharges, replacements);
 		        autoCharges = replacedString2;
 			}
-			
+			*/
 			// If RBP amount is 49.95, then we need to Add Prorate RBP amount in Move in charges
 			if((PDFReader.residentBenefitsPackage.trim().contains("49.95")||(RunnerClass.portfolioName.contains("ATX.")&&PDFReader.residentBenefitsPackage.trim().contains("39.00")))&&PDFReader.residentBenefitsPackageAvailabilityCheck==true)
 			{

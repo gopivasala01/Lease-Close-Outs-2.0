@@ -1304,6 +1304,7 @@ public class PDFReader
 			System.out.println("1% of Pet Rent = "+OnePercentOfPetRentAmount);
 			System.out.println("1% of Prorate Pet Rent = "+OnePercentOfProratePetRentAmount);
 			
+			/* Removed this logic on 04/04/2024
 			//Splitting RBP Amounts when it has taxes for only Montana
 			if(PDFReader.residentBenefitsPackageTaxAvailabilityCheck==true&&RunnerClass.company.equals("Montana"))
 			{
@@ -1322,7 +1323,7 @@ public class PDFReader
 				}
 				
 			}
-			
+			*/
 			//Calculating Prorate Resident Benefit Package if RBP amount is 49.95
 			try
 			{ 

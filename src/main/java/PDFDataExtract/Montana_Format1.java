@@ -699,6 +699,10 @@ public class Montana_Format1
 	    {}
 	    
 	    //New Resident Benefits Package and Tax Amounts
+	    if(!PDFReader.residentBenefitsPackage.trim().replace("$", "").equals("49.95"))
+	    {
+	    	if(!PDFReader.residentBenefitsPackage.trim().replace("$", "").equals("39.00"))
+	    	{
 	    try
 	    {
 	    	//Resident Benefits Package 
@@ -741,6 +745,8 @@ public class Montana_Format1
 	    }
 	    catch(Exception e)
 	    {}
+	    	}
+	    }
 	    
 		return true;
 	    
