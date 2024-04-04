@@ -100,8 +100,7 @@ public class RunnerClass
 		public static int pdfErrorRerunCount =0;
 	public static void main(String[] args) throws Exception 
 	{
-		double d = 18.316;
-		d  = Double.parseDouble(String.format("%.2f", d));
+		
 		//Get In Progress Leases
 		//Company,BuildingAbbreviation, LeaseNae
 		DataBase.getBuildingsList();

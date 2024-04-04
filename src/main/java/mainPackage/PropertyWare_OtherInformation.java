@@ -432,7 +432,13 @@ public class PropertyWare_OtherInformation
 		RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.needsNewLease)).build().perform();
 		RunnerClass.driver.findElement(Locators.needsNewLease).click();
 		Select needsNewLease_List = new Select(RunnerClass.driver.findElement(Locators.needsNewLease_List));
-		needsNewLease_List.selectByVisibleText(AppConfig.getNeedsNewLease(RunnerClass.company));
+		try {
+		needsNewLease_List.selectByVisibleText("NO");
+		}
+		catch(Exception e)
+		{
+			needsNewLease_List.selectByVisibleText("No");	
+		}
 		}
 		catch(Exception e)
 		{
