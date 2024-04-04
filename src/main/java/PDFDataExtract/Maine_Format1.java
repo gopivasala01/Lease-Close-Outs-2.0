@@ -130,7 +130,14 @@ public class Maine_Format1
 	    {
 	    	try
 	    	{
-	    	PDFReader.monthlyRent = text.substring(text.indexOf("RENT:"));
+	    		try
+	    		{
+	    	    PDFReader.monthlyRent = text.substring(text.indexOf("RENT:"));
+	    		}
+	    		catch(Exception e)
+	    		{
+	    			PDFReader.monthlyRent = text.substring(text.indexOf("Monthly Rent:"));
+	    		}
 	    	PDFReader.monthlyRent = PDFReader.monthlyRent.substring(PDFReader.monthlyRent.indexOf("Monthly Rent due in the amount of $")+"Monthly Rent due in the amount of $".length()).trim().split(" ")[0].trim();
 	    	}
 	    	catch(Exception e)
