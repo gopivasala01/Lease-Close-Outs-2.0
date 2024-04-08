@@ -173,6 +173,7 @@ public class PDFReader
 			captiveInsurenceATXFlag = false;
 			floridaLiquidizedAddendumOption1Check =  false;
 			HVACFilterOptOutAddendum = false;
+			RBPOptOutAddendumCheck = false;
 			prorateResidentBenefitPackage = "";
 			
 		    //Runner Class Late Fee Variables
